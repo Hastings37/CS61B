@@ -9,6 +9,7 @@
  *   http://introcs.cs.princeton.edu/java/15inout/javadoc/StdDraw.html
  */
 
+Package proj0;
 public class StdDrawDemo {
 	public static String imageToDraw = "advice.png";
 
