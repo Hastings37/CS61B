@@ -1,4 +1,4 @@
-import edu.princeton.cs.algs4.*;
+﻿import edu.princeton.cs.algs4.*;
 
 public class NBody {
 	public static double readRadius(String path){
