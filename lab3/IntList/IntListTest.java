@@ -1,6 +1,7 @@
+import org.junit.Test;
 import static org.junit.Assert.*;
 
-import org.junit.Test;
+
 
 public class IntListTest {
 
@@ -69,5 +70,25 @@ public class IntListTest {
     /** If you're running this from the command line, you'll need
       * to add a main method. See ArithmeticTest.java for an
       * example. */
+
+    @Test
+    public void testReverse(){
+
+        // 内部不可以出现汉字的形式吗?jav
+        IntList l1=IntList.of(1,2,3);
+        IntList l2=IntList.reverse(l1);
+        assertEquals(IntList.of(3,2,1),l2);
+        // 前面是希望的输出后面是实际上的输出内容
+        assertEquals(IntList.of(1,2,3),l1);
+
+        l1=IntList.of();
+        l2=IntList.reverse(l1);
+        assertEquals(IntList.of(),l2);
+
+
+    }
+    // public static void main(String []args){
+    //     System.out.println("hello world");
+    // }
 
 }
