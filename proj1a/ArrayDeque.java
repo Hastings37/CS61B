@@ -32,7 +32,7 @@ public class ArrayDeque<Type> {
 			Type[] tmp = (Type[]) new Object[array.length / 2 + 1];
 			// 将元素从 front 开始，依次复制到 tmp 数组中
 			for (int i = 0; i < size; i++) {
-				tmp[i] = array[(front + i) % array.length];
+				tmp[i] = array[(front + i) % tmp.length];
 			}
 			array = tmp;
 			front = 0; // front 重新指向新数组的开始
