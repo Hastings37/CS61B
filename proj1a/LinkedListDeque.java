@@ -1,11 +1,11 @@
-public class LinkedListDeque<Type> {
+public class LinkedListDeque<T> {
 	// 创建的是基于链表的形式的双端队列;
 	private int size;
 	private Node sentry;//哨兵
 
 	// 循环的双端列表的形式
 	private class Node {
-		public Type item;
+		public T item;
 		public Node next;
 		public Node prev;
 
@@ -16,7 +16,7 @@ public class LinkedListDeque<Type> {
 
 		}
 
-		Node(Type item) {
+		Node(T item) {
 			this.item = item;
 			next = null;
 			prev = null;
@@ -29,7 +29,7 @@ public class LinkedListDeque<Type> {
 		sentry = new Node();
 	}
 
-	public void addFirst(Type item) {
+	public void addFirst(T item) {
 		// 指定的数据添加在末尾的形式
 		// 这样的双端队列的sentry（哨兵）的前一个位置就是所谓的末尾的元素啊
 		// 末尾元素的下一个就是我们的sentry
@@ -50,7 +50,7 @@ public class LinkedListDeque<Type> {
 		size++;
 	}
 
-	public void addLast(Type item) {
+	public void addLast(T item) {
 		Node newNode = new Node(item);
 		Node last = sentry.prev;
 		if (last == null) {
@@ -85,7 +85,7 @@ public class LinkedListDeque<Type> {
 		return;
 	}
 
-	public Type removeFirst() {
+	public T removeFirst() {
 		Node first = sentry.next;
 		if (size == 0) return null;//也就是内部不存在数据的时候
 		sentry.next = first.next;
@@ -97,7 +97,7 @@ public class LinkedListDeque<Type> {
 		return first.item;
 	}
 
-	public Type removeLast() {
+	public T removeLast() {
 		Node last = sentry.prev;
 		if (size == 0) return null;
 		sentry.prev = last.prev;
@@ -109,7 +109,7 @@ public class LinkedListDeque<Type> {
 
 	}
 
-	public Type get(int index) {
+	public T get(int index) {
 		int i = 0;
 		Node p = sentry.next;
 		while (p != null && i < index) {
@@ -120,7 +120,7 @@ public class LinkedListDeque<Type> {
 		return p.item;
 	}
 
-	public Type getRecursive(int index) {
+	public T getRecursive(int index) {
 		// 使用递归的形式进行的求解
 		// 并不是啊这里的额
 		// 所以在使用中需要注意一下
@@ -128,7 +128,7 @@ public class LinkedListDeque<Type> {
 		return getRecursiveHelper(sentry.next, index);
 	}
 
-	public Type getRecursiveHelper(Node p, int index) {
+	public T getRecursiveHelper(Node p, int index) {
 		if (index == 0) return p.item;
 		return getRecursiveHelper(p.next, index - 1);
 	}

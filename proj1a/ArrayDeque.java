@@ -1,6 +1,6 @@
-public class ArrayDeque<Type> {
+public class ArrayDeque<T> {
 	private int size;
-	private Type[] array;
+	private T[] array;
 	private int front;  // 队列的前端指针
 	private int rear;   // 队列的后端指针
 
@@ -9,7 +9,7 @@ public class ArrayDeque<Type> {
 	}
 
 	public ArrayDeque(int capacity) {
-		array = (Type[]) new Object[capacity];  // 创建一个指定容量的数组
+		array = (T[]) new Object[capacity];  // 创建一个指定容量的数组
 		size = 0;
 		front = 0;  // 初始化前端指针
 		rear = 0;   // 初始化后端指针
@@ -19,7 +19,7 @@ public class ArrayDeque<Type> {
 	public void resize() {
 		if (size == array.length) {
 			// 扩容，创建一个新数组
-			Type[] tmp = (Type[]) new Object[array.length * 2];
+			T[] tmp = (T[]) new Object[array.length * 2];
 			// 将元素从 front 开始，依次复制到 tmp 数组中
 			for (int i = 0; i < size; i++) {
 				tmp[i] = array[(front + i) % array.length];
@@ -29,7 +29,7 @@ public class ArrayDeque<Type> {
 			rear = size; // rear 更新为当前元素数
 		} else if (array.length >= 16 && ((double) size < array.length * 0.25)) {
 			// 缩小数组大小，防止浪费内存
-			Type[] tmp = (Type[]) new Object[array.length / 2 + 1];
+			T[] tmp = (T[]) new Object[array.length / 2 + 1];
 			// 将元素从 front 开始，依次复制到 tmp 数组中
 			for (int i = 0; i < size; i++) {
 				tmp[i] = array[(front + i) % tmp.length];
@@ -41,7 +41,7 @@ public class ArrayDeque<Type> {
 	}
 
 	// 将一个元素添加到队列前端
-	public void addFirst(Type item) {
+	public void addFirst(T item) {
 		resize();  // 检查是否需要扩展数组
 
 		// 如果前端指针已经到达数组的开始，需要将其循环回数组末尾
@@ -51,7 +51,7 @@ public class ArrayDeque<Type> {
 	}
 
 	// 将一个元素添加到队列后端
-	public void addLast(Type item) {
+	public void addLast(T item) {
 		resize();  // 检查是否需要扩展数组
 
 		array[rear] = item;
@@ -60,10 +60,10 @@ public class ArrayDeque<Type> {
 	}
 
 	// 删除并返回队列前端的元素
-	public Type removeFirst() {
+	public T removeFirst() {
 		if (size == 0) return null;
 
-		Type tmp = array[front];
+		T tmp = array[front];
 		array[front] = null;  // 释放该位置的元素
 		front = (front + 1) % array.length;  // 前端指针循环
 		size--;
@@ -72,11 +72,11 @@ public class ArrayDeque<Type> {
 	}
 
 	// 删除并返回队列后端的元素
-	public Type removeLast() {
+	public T removeLast() {
 		if (size == 0) return null;
 
 		rear = (rear - 1 + array.length) % array.length;  // 往前移动后端指针
-		Type tmp = array[rear];
+		T tmp = array[rear];
 		array[rear] = null;  // 释放该位置的元素
 		size--;
 
@@ -98,7 +98,7 @@ public class ArrayDeque<Type> {
 	}
 
 	// 获取队列中指定索引的元素
-	public Type get(int index) {
+	public T get(int index) {
 		if (index < 0 || index >= size) return null;
 		return array[(front + index) % array.length];  // 根据前端指针和索引计算实际位置
 	}
