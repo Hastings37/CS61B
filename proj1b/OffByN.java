@@ -1,9 +1,9 @@
-public class OfByN implements CharacterComparator {
+public class OffByN implements CharacterComparator {
 	/*
 	 * 采用单个整数的单参数构造函数*/
 	public int N;
 
-	OfByN(int N) {
+	OffByN(int N) {
 		this.N = N;
 		// 返回一个指定的对象为对相差N的字符的字符返回为true的形式;
 	}

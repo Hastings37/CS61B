@@ -4,8 +4,7 @@ public class OffByOne implements CharacterComparator {
 	@Override
 	public boolean equalChars(char x, char y) {
 		// 对应指定的位置相差为1返回为true;
-		int result = Math.abs(x - y);
-		return result < 2;
+		return Math.abs(x-y)==1;
 	}
 
 

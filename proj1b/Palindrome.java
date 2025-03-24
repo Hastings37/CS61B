@@ -1,10 +1,11 @@
 import javafx.concurrent.WorkerStateEvent;
+import org.junit.rules.TestRule;
 
 import java.util.LinkedList;
 
 public class Palindrome {
 	// 给定一个string 其应该返回一个Deque顺序和之前的一样的状态;
-	public static OffByOne off=new OffByOne();
+	// 内部自己传入指定的需要的比较器的形式是这样的;
 	public Deque<Character> wordToDeque(String word) {
 		// 也即是内部不存在equals的形式
 		// LinkedListDeque<Character> deque =  new LinkedListDeque<>();
@@ -26,7 +27,7 @@ public class Palindrome {
 		int len = word.length();
 
 		for (int i = 0; i < len / 2; i++) {
-			if (!off.equalChars(word.charAt(i),word.charAt(len - 1 - i))) return false;
+			if (word.charAt(i)!=word.charAt(len-1-i)) return false;
 		}
 		return true;
 		// 也就是说这里根本就没有使用那里的形式出现;
@@ -38,7 +39,7 @@ public class Palindrome {
 		// 可以获取到的数据全都是指定的内部存储的数据并不是 要不然就是要对其内部进行的删除操作才行
 		int len = deque.size();
 		for (int i = 0; i < len / 2; i++) {
-			if (!off.equalChars(deque.get(i),deque.get(len - 1 - i))) return false;
+			if (deque.get(i)!=deque.get(len-1-i)) return false;
 		}
 		return true;
 	}
@@ -46,9 +47,11 @@ public class Palindrome {
 	public boolean isPalindrome(String word,CharacterComparator cc){
 		// 比较的方式信息作为参数传递进去
 		// 后面传入的是一个指定的字符比较器的形式;
-
-		return false;
-
+		int len = word.length();
+		for (int i = 0; i < len / 2; i++) {
+            if (!cc.equalChars(word.charAt(i), word.charAt(len-1-i))) return false;
+        }
+		return true;
 	}
 
 
