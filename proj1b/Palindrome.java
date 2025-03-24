@@ -23,7 +23,7 @@ public class Palindrome {
 	/*
 	 * 给定的单词是回文的形式就是true 反之为false
 	 * */
-	private boolean isPalindrome(String word) {
+	public boolean isPalindrome(String word) {
 		int len = word.length();
 
 		for (int i = 0; i < len / 2; i++) {
@@ -44,7 +44,7 @@ public class Palindrome {
 		return true;
 	}
 
-	private boolean isPalindrome(String word,CharacterComparator cc){
+	public boolean isPalindrome(String word,CharacterComparator cc){
 		// 比较的方式信息作为参数传递进去
 		// 后面传入的是一个指定的字符比较器的形式;
 		int len = word.length();
