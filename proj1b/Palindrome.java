@@ -11,12 +11,10 @@ public class Palindrome {
 		// LinkedListDeque<Character> deque =  new LinkedListDeque<>();
 		// 这样的类型的映射是可以的;
 		Deque<Character> deque = new LinkedListDeque<>();
-
 		for (int i = 0; i < word.length(); i++) {
 			Character c = word.charAt(i);
 			deque.addLast(c);
 		}
-
 		return deque;
 	}
 
@@ -24,20 +22,22 @@ public class Palindrome {
 	 * 给定的单词是回文的形式就是true 反之为false
 	 * */
 	public boolean isPalindrome(String word) {
-		int len = word.length();
-
-		for (int i = 0; i < len / 2; i++) {
-			if (word.charAt(i)!=word.charAt(len-1-i)) return false;
+		Deque<Character> deque = wordToDeque(word);
+		while(deque.size()>1){
+			if(deque.removeFirst()!=deque.removeLast()){
+				return false;
+			}
 		}
 		return true;
 		// 也就是说这里根本就没有使用那里的形式出现;
 	}
 	// 添加一个重载isPalindrome的新的方法出现
 
-	private boolean isPalindrome(Deque<Character> deque) {
+	public boolean isPalindrome(Deque<Character> deque) {
 		// 分别从两侧开始进行便利的操作;
 		// 可以获取到的数据全都是指定的内部存储的数据并不是 要不然就是要对其内部进行的删除操作才行
 		int len = deque.size();
+		if(len==0||len==1) return true;
 		for (int i = 0; i < len / 2; i++) {
 			if (deque.get(i)!=deque.get(len-1-i)) return false;
 		}

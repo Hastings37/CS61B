@@ -1,7 +1,7 @@
 public class OffByN implements CharacterComparator {
 	/*
 	 * 采用单个整数的单参数构造函数*/
-	public int N;
+	private int N;
 
 	OffByN(int N) {
 		this.N = N;
