@@ -16,25 +16,24 @@ public class TestArrayDequeGold {
 		int count=0;
 		for (int i = 0; i < 500; i++) {
 			double random = StdRandom.uniform();
-
 			if(i%5==0){
 				//i断言判断其实不是Empty()的状态;
 				msg.append("size()\n");
 				assertEquals(msg.toString(), deque.size(), sDeque.size());
 			}//
 			if(random <=0.2){
-				msg.append("isEmpty()\n");
-				if(count==0){
+				if(deque.isEmpty()){
+					msg.append("isEmpty()\n");
 					assertTrue(msg.toString(),sDeque.isEmpty());
 				}
 			}else if(random>0.2&&random<=0.4){
 				msg.append("addFirst("+i+")\n");
 				deque.addFirst(i);
 				sDeque.addFirst(i);
+				count++;
 				Integer a=deque.get(0);
 				Integer b=sDeque.get(0);
 				assertEquals(msg.toString(), a, b);
-				count++;
 			}else if(random>0.4&&random<=0.6){
 				msg.append("addLast("+i+")\n");
 				deque.addLast(i);
@@ -52,8 +51,8 @@ public class TestArrayDequeGold {
 				msg.append("removeFirst()\n");
 				Integer a=deque.removeFirst();
 				Integer b=sDeque.removeFirst();
-				assertEquals(msg.toString(), a, b);
 				count--;
+				assertEquals(msg.toString(), a, b);
 			}else if(random>0.8){
 				if(deque.isEmpty()){
 					msg.append("isEmpty()");
